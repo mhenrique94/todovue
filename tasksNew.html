@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDoVue - Nova Tarefa</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fontawesome 6 CND-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app2">
+        <h1>Nova Tarefa</h1>
+        
+        <div class="containerTask">
+            <p>
+                <label for="title">Titulo:</label><br>
+                <input type="text" name="title" id="title" placeholder="Insira o titulo da tarefa" v-model="task.title">
+            
+            </p>
+            
+            <p>
+                <label for="due">Vencimento:</label><br>
+                <input type="date" name="due" id="due" placeholder="Vencimento da tarefa" v-model="task.dueTo">
+            
+            </p>
+        
+            <p>
+                <label for="projectInput">Project:</label><br>
+                <select name="projectInput" v-model="task.project">
+                    <option value="1">Estudos</option>
+                    <option value="2">Tabalho</option>
+                    <option value="3">Pessoal</option>
+                </select>
+                    
+            </p>
+        
+            <p>
+                <label for="user">User:</label><br>
+                <input type="text" name="user" id="user" placeholder="Insira seu nome de usuário" v-model="task.user">
+            </p>
+        
+            <button type="submit" @click="postTasks" class="sendBtn">Salvar</button>
+        
+        </div>
+    
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./todo.js"></script>
+</body>
+
+

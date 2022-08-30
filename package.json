@@ -1,0 +1,11 @@
+{
+  "name": "todovue",
+  "version": "1.0.0",
+  "description": "to-do list in vuejs",
+  "main": "todo.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Marcelo Silva",
+  "license": "MIT"
+}
