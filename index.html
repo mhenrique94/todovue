@@ -36,10 +36,16 @@
                   <p>{{ tarefa.title }}</p>
                   <span class="projeto">{{ tarefa.project }}</span>
                 </div>
-                <div @ class="card-action">
+                <!-- excluir tarefa -->
+                <div class="card-action">
                   <a @click.preventDefault="deleteTasks(tarefa.id)">
                     <i class="fa-solid fa-trash trash-icon"></i>
                   </a>
+                  <!-- editar tarefa -->
+                  <a @click="editTasks(tarefa.id)">
+                    <i class="fa-solid fa-edit"></i>
+                  </a>
+
                 </div>
               </div>
             </div>

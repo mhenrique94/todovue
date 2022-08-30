@@ -15,11 +15,25 @@ var app = new Vue({
         fetch(`http://localhost:3000/tasks/${id}`, {
           method: "DELETE",
         });
-      },      
+      },
+      
+      editTasks(id){
+        fetch(`http://localhost:3000/tasks/${id}`).then(response => response.json()).then(resp => {
+          console.log(resp)
+          app2.task.id = resp.id
+          app2.task.title = resp.title
+          app2.task.dueTo = resp.dueTo
+          app2.task.project = resp.project
+          app2.task.user = resp.user
+        })
+      },
+      
     },
     created(){
       this.getTasks()
-    }
+    },
+
+
   })
 
 var app2 = new Vue({
@@ -45,6 +59,8 @@ var app2 = new Vue({
         body: dataJson,
       });
     },
+
+    
     
   },
   

@@ -27,26 +27,26 @@
         <a href="./index.html">
           <i class="fa-solid fa-backward"> Voltar</i>
         </a>
-        <h2>Nova Tarefa</h2>
+        <h2>Editar Tarefa</h2>
 
       </div>
         
         <div class="containerTask">
             <p>
                 <!-- <label for="title">Titulo:</label><br> -->
-                <input type="text" name="title" id="title" placeholder="Insira o titulo da tarefa" v-model="task.title">
+                <input type="text" name="title" id="title" placeholder="Insira o titulo da tarefa" v-model="app2.task.title" value="app2.task.title">
             
             </p>
             
             <p>
                 <label for="due">Vencimento:</label><br>
-                <input type="date" name="due" id="due" placeholder="Vencimento da tarefa" v-model="task.dueTo">
+                <input type="date" name="due" id="due" placeholder="Vencimento da tarefa" v-model="app2.task.dueTo" value="app2.task.dueTo">
             
             </p>
         
             <p>
                 <!-- <label for="projectInput">Project:</label><br> -->
-                <select name="projectInput" v-model="task.project">
+                <select name="projectInput" v-model="app2.task.project" value="app2.task.project">
                     <option value="1">Estudos</option>
                     <option value="2">Tabalho</option>
                     <option value="3">Pessoal</option>
@@ -56,10 +56,10 @@
         
             <p>
                 <!-- <label for="user">User:</label><br> -->
-                <input type="text" name="user" id="user" placeholder="Insira seu nome de usuário" v-model="task.user">
+                <input type="text" name="user" id="user" placeholder="Insira seu nome de usuário" v-model="app2.task.user" value="app2.task.user">
             </p>
         
-            <button type="submit" @click="postTasks" class="sendBtn">Salvar</button>
+            <!-- <button type="submit" @click="postTasks" class="sendBtn">Salvar</button> -->
         
         </div>
     
