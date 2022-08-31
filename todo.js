@@ -3,7 +3,18 @@ var app = new Vue({
     data: {
       tasks: [
       ],
-      
+
+      task:{
+        id: null,
+        title: null,
+        dueTo: null,
+        project: null,
+        user: null,
+      },
+
+      editIsEnabled: false,
+      listIsEnabled: true,
+
     },
     methods: {
       getTasks() {
@@ -20,48 +31,45 @@ var app = new Vue({
       editTasks(id){
         fetch(`http://localhost:3000/tasks/${id}`).then(response => response.json()).then(resp => {
           console.log(resp)
-          app2.task.id = resp.id
-          app2.task.title = resp.title
-          app2.task.dueTo = resp.dueTo
-          app2.task.project = resp.project
-          app2.task.user = resp.user
+          this.task.id = resp.id
+          this.task.title = resp.title
+          this.task.dueTo = resp.dueTo
+          this.task.project = resp.project
+          this.task.user = resp.user
         })
+
+        this.editIsEnabled ? this.editIsEnabled = false : this.editIsEnabled = true
+        this.listIsEnabled ? this.listIsEnabled = false : this.listIsEnabled = true
+      },
+
+      postTasks(){
+        const data = this.task
+  
+        const dataJson = JSON.stringify(data);
+  
+        fetch("http://localhost:3000/tasks", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: dataJson,
+        });
+
+        window.location.href = "index.html";
+      },
+
+      updateTasks(){
+        const data = this.task
+  
+        const dataJson = JSON.stringify(data);
+  
+        fetch(`http://localhost:3000/tasks/${this.task.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: dataJson,
+        });
       },
       
     },
     created(){
       this.getTasks()
     },
-
-
-  })
-
-var app2 = new Vue({
-  el: "#app2",
-  data: {
-    task:{
-      id: null,
-      title: null,
-      dueTo: null,
-      project: null,
-      user: null,
-    },
-  },
-  methods: {
-    postTasks(){
-      const data = this.task
-
-      const dataJson = JSON.stringify(data);
-
-      fetch("http://localhost:3000/tasks", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: dataJson,
-      });
-    },
-
-    
-    
-  },
-  
-});
+})

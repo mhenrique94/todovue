@@ -22,14 +22,15 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   </head>
   <body>
-    <div id="app2">
-      <div class="upperContainer">
-        <a href="./index.html">
-          <i class="fa-solid fa-backward"> Voltar</i>
-        </a>
-        <h2>Nova Tarefa</h2>
-
-      </div>
+    <div id="app">
+      <nav class="orange darken-2">
+        <div class="nav-wrapper">
+          <a href="./index.html">
+            <i class="fa-solid fa-backward"></i> <span class="backBtn">Voltar</span> 
+          </a>
+          <span class="title">Nova Tarefa</span>
+        </div>
+      </nav>
         
         <div class="containerTask">
             <p>
@@ -59,7 +60,7 @@
                 <input type="text" name="user" id="user" placeholder="Insira seu nome de usuário" v-model="task.user">
             </p>
         
-            <button type="submit" @click="postTasks" class="sendBtn">Salvar</button>
+            <button type="submit" @click="postTasks" class="sendBtn btn">Salvar</button>
         
         </div>
     

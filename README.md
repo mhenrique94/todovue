@@ -10,12 +10,12 @@ __Funcionalidades presentes:__
 - Listagem de tarefas;
 - Adição de tarefas;
 - Exclusão de tarefas;
-
-
-__Funcionalidades pendentes:__
 - Edição de tarefas;
 - Adição de tarefas na mesma página;
 
+
+__Funcionalidades pendentes:__
+- Me diga
 
 __Para inicializar:__
 1. Clone esse repositório em seu computador;
