@@ -20,6 +20,11 @@ body{
     
 }
 
+.nav{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
 .nav-wrapper{
     display: flex;
     gap: 20px;
@@ -72,15 +77,6 @@ label{
     justify-content: center;
 
 }
-.sendBtn{
-    /* border: 1px solid gray;
-    padding: 5px;
-    width: 100px;
-    text-align: center;
-    border-radius: 8px;
-    color: black;
-    background-color: white; */
-}
 
 .trash-icon {
     width: 30px;
@@ -95,4 +91,18 @@ label{
 
 .aside {
     float: right;
+}
+
+.icon {
+    font-size: 24px;
+}
+
+.card-reveal{
+    display: none;
+}
+
+.btn-floating{
+    position: fixed;
+    left: 2%;
+    top: 15%;
 }

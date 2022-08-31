@@ -23,7 +23,7 @@
   </head>
   <body>
     <div id="app">
-      <nav class="orange darken-2">
+      <nav class="pink lighten-1">
         <div class="nav-wrapper">
           <a href="./index.html">
             <i class="fa-solid fa-backward"></i> <span class="backBtn">Voltar</span> 
@@ -46,7 +46,7 @@
             </p>
         
             <p>
-                <!-- <label for="projectInput">Project:</label><br> -->
+                <label for="projectInput">Project:</label><br>
                 <select name="projectInput" v-model="task.project">
                     <option value="1">Estudos</option>
                     <option value="2">Tabalho</option>
@@ -56,13 +56,18 @@
             </p>
         
             <p>
-                <!-- <label for="user">User:</label><br> -->
                 <input type="text" name="user" id="user" placeholder="Insira seu nome de usuário" v-model="task.user">
             </p>
         
             <button type="submit" @click="postTasks" class="sendBtn btn">Salvar</button>
         
         </div>
+
+        <footer class="page-footer pink lighten-1">
+          <div class="footer-copyright">
+            <div class="container">© 2022 Frontend</div>
+          </div>
+        </footer>
     
     </div>
     

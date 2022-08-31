@@ -20,42 +20,50 @@
   </head>
   <body>
     <div id="app" class="appWrapper">
-      <nav class="orange darken-2">
+      <nav class=" nav pink lighten-1">
         <div class="nav-wrapper">
           <span class="title">ToDoVue - Tarefas</span>
         </div>
       </nav>
+      <a
+            class="btn-floating btn-large waves-effect waves-light pink"
+            href="./tasksNew.html"><i class="fa-solid fa-plus"></i
+          ></a>
       <div class="container" v-show="listIsEnabled">
         <div class="section">
           <!--   Icon Section   -->
           <div class="row">
             <!-- card de tarefa que repete para cada item do array -->
-            <div v-for="tarefa in tasks" class="card horizontal">
-              <div class="card-stacked">
+            <div v-for="tarefa in tasks" class="horizontal">
+              <div class=" card card-stacked">
                 <div class="card-content">
-                  <p>{{ tarefa.title }}</p>
+                  <span class="card-title activator">{{ tarefa.title }}
+                    <i class="fa-solid fa-bars right pink-text"></i>
+                  </span></span>
                   <span class="projeto">{{ tarefa.project }}</span>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">{{ tarefa.title }}<i class="fa-solid fa-close icon right pink-text"></i></span>
+                  <p>Validade: {{ tarefa.dueTo }}</p>
+                  <p>Autor: {{ tarefa.user }}</p>
                 </div>
                 <!-- excluir tarefa -->
                 <div class="card-action">
                   <a @click.preventDefault="deleteTasks(tarefa.id)">
-                    <i class="fa-solid fa-trash trash-icon"></i>
+                    <i class="fa-solid fa-trash trash-icon pink-text"></i>
                   </a>
                   <!-- editar tarefa -->
                   <a @click="editTasks(tarefa.id)">
-                    <i class="fa-solid fa-edit"></i>
+                    <i class="fa-solid fa-edit pink-text"></i>
                   </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="add">
-          <a
-            class="btn-floating btn-large waves-effect waves-light red"
-            href="./tasksNew.html"><i class="fa-solid fa-plus"></i
-          ></a>
-        </div>
+        <!-- <div class="add"> -->
+          
+        <!-- </div> -->
       </div>
 
       <!-- seção de edição de task -->
@@ -75,9 +83,9 @@
       <p>
           <!-- <label for="projectInput">Project:</label><br> -->
           <select name="projectInput" v-model="task.project" value="task.project">
-              <option value="1">Estudos</option>
-              <option value="2">Tabalho</option>
-              <option value="3">Pessoal</option>
+              <option>Estudos</option>
+              <option>Tabalho</option>
+              <option>Pessoal</option>
           </select>
               
       </p>
@@ -91,7 +99,7 @@
       </div>
       </div>
 
-      <footer class="page-footer orange darken-3">
+      <footer class="page-footer pink lighten-1">
         <div class="footer-copyright">
           <div class="container">© 2022 Frontend</div>
         </div>
