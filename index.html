@@ -25,86 +25,100 @@
           <span class="title">ToDoVue - Tarefas</span>
         </div>
       </nav>
-      <a
-            class="btn-floating btn-large waves-effect waves-light pink"
-            href="./tasksNew.html"><i class="fa-solid fa-plus"></i
-          ></a>
-      <div class="container" v-show="listIsEnabled">
-        <div class="section">
-          <!--   Icon Section   -->
-          <div class="row">
-            <!-- card de tarefa que repete para cada item do array -->
-            <div v-for="tarefa in tasks" class="horizontal">
-              <div class=" card card-stacked">
-                <div class="card-content">
-                  <span class="card-title activator">{{ tarefa.title }}
-                    <i class="fa-solid fa-bars right pink-text"></i>
-                  </span></span>
-                  <span class="projeto">{{ tarefa.project }}</span>
-                </div>
-                <div class="card-reveal">
-                  <span class="card-title grey-text text-darken-4">{{ tarefa.title }}<i class="fa-solid fa-close icon right pink-text"></i></span>
-                  <p>Validade: {{ tarefa.dueTo }}</p>
-                  <p>Autor: {{ tarefa.user }}</p>
-                </div>
-                <!-- excluir tarefa -->
-                <div class="card-action">
-                  <a @click.preventDefault="deleteTasks(tarefa.id)">
-                    <i class="fa-solid fa-trash trash-icon pink-text"></i>
-                  </a>
-                  <!-- editar tarefa -->
-                  <a @click="editTasks(tarefa.id)">
-                    <i class="fa-solid fa-edit pink-text"></i>
-                  </a>
+      <div class="preloader-wrapper big active" v-show="!loading">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+      <div class="taskListWrapper container" v-show="loading">
+
+              <div class="input-field col s12">
+                <input type="text" id="autocomplete-input" class="autocomplete" v-model="input">
+                <label for="autocomplete-input" class="active"><i class=" fa-solid fa-search"></i>Buscar</label>
+              </div>
+
+        <a
+              class="btn-floating btn-large waves-effect waves-light pink"
+              href="./tasksNew.html"><i class="fa-solid fa-plus"></i
+            ></a>
+        <div v-show="listIsEnabled">
+          <div class="section">
+            <!--   Icon Section   -->
+            <div class="row">
+              <!-- card de tarefa que repete para cada item do array -->
+              <div v-for="tarefa in inputSearch" class="horizontal">
+                <div class=" card card-stacked">
+                  <div class="card-content">
+                    <span class="card-title activator">{{ tarefa.title }}
+                      <i class="fa-solid fa-bars right pink-text"></i>
+                    </span></span>
+                    <span class="projeto">{{ tarefa.project }}</span>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">{{ tarefa.title }}<i class="fa-solid fa-close icon right pink-text"></i></span>
+                    <p>Validade: {{ tarefa.dueTo }}</p>
+                    <p>Autor: {{ tarefa.user }}</p>
+                  </div>
+                  <!-- excluir tarefa -->
+                  <div class="card-action">
+                    <a @click.preventDefault="deleteTasks(tarefa.id)">
+                      <i class="fa-solid fa-trash trash-icon pink-text"></i>
+                    </a>
+                    <!-- editar tarefa -->
+                    <a @click="editTasks(tarefa.id)">
+                      <i class="fa-solid fa-edit pink-text"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <!-- <div class="add"> -->
+            
+          <!-- </div> -->
         </div>
-        <!-- <div class="add"> -->
-          
-        <!-- </div> -->
-      </div>
-
-      <!-- seção de edição de task -->
-      <div v-show="editIsEnabled" class="containerTask container" >
-        <p>
-          <!-- <label for="title">Titulo:</label><br> -->
-          <input type="text" name="title" id="title" placeholder="Insira o titulo da tarefa" v-model="task.title" value="task.title">
-      
-      </p>
-      
-      <p>
-          <label for="due">Vencimento:</label><br>
-          <input type="date" name="due" id="due" placeholder="Vencimento da tarefa" v-model="task.dueTo" value="task.dueTo">
-      
-      </p>
   
-      <p>
-          <!-- <label for="projectInput">Project:</label><br> -->
-          <select name="projectInput" v-model="task.project" value="task.project">
-              <option>Estudos</option>
-              <option>Tabalho</option>
-              <option>Pessoal</option>
-          </select>
-              
-      </p>
-  
-      <p>
-          <input type="text" name="user" id="user" placeholder="Insira seu nome de usuário" v-model="task.user" value="task.user">
-      </p>
-      <div class="buttons">
-        <a href="#" class="sendBtn btn"@click.preventDefault="updateTasks">Salvar</a>
-        <a href="./index.html" class="sendBtn btn">Cancelar</a>
-      </div>
-      </div>
+        <!-- seção de edição de task -->
+        <div v-show="editIsEnabled" class="containerTask container" >
 
+            <div class="input-field col s6">
+              <input type="text" name="title" id="title" v-model="task.title" class="validate" >
+              <label for="title" class="active" v-show="!task.title">Insira o titulo da tarefa</label><br>
+            </div>
+        
+            <label for="due">Vencimento:</label><br>
+            <input type="date" name="due" id="due" placeholder="Vencimento da tarefa" v-model="task.dueTo" value="task.dueTo">
+
+            <div class="input-field col s6">
+              <select name="projectInput" v-model="task.project" value="task.project">
+                <option>Estudos</option>
+                <option>Tabalho</option>
+                <option>Pessoal</option>
+              </select>
+              <label for="projectInput" class="active" v-show="!task.project">Project:</label><br>
+            </div>
+    
+            <input type="text" name="user" id="user" placeholder="Insira seu nome de usuário" v-model="task.user" value="task.user">
+
+          <div class="buttons">
+            <a href="#" class="sendBtn btn"@click.preventDefault="updateTasks">Salvar</a>
+            <a href="./index.html" class="sendBtn btn">Cancelar</a>
+          </div>
+          </div>
+  
+        </div>
+      </div>
       <footer class="page-footer pink lighten-1">
         <div class="footer-copyright">
           <div class="container">© 2022 Frontend</div>
         </div>
       </footer>
-    </div>
 
     <!-- Materialize JavaScript CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

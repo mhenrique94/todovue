@@ -14,18 +14,24 @@ var app = new Vue({
 
       editIsEnabled: false,
       listIsEnabled: true,
+      loading: false,
+      input :'',
 
     },
     methods: {
       getTasks() {
+        this.loading = false
         fetch('http://localhost:3000/tasks')
         .then((response) => response.json())
         .then((jsontasks) => this.tasks = jsontasks)
+        this.loading = true
       },
       deleteTasks(id){
+      
         fetch(`http://localhost:3000/tasks/${id}`, {
           method: "DELETE",
         });
+        window.location.href = "index.html";
       },
       
       editTasks(id){
@@ -43,6 +49,7 @@ var app = new Vue({
       },
 
       postTasks(){
+        this.loading = false
         const data = this.task
   
         const dataJson = JSON.stringify(data);
@@ -66,10 +73,16 @@ var app = new Vue({
           headers: { "Content-Type": "application/json" },
           body: dataJson,
         });
+        window.location.href = "index.html"
       },
       
     },
     created(){
       this.getTasks()
     },
+    computed: {
+      inputSearch() {
+        return this.tasks.filter((elem) => elem.title.toLowerCase().includes(this.input.toLowerCase()))
+      }
+    }
 })
